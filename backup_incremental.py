@@ -4,7 +4,7 @@ from clases_main import File
 directorio = 'D:/'
 extension = '*.txt'
 
-# Objeto Instancia
+# Objeto de Instancia
 search_archivos = File(directorio,extension)
 
 
