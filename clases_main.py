@@ -2,31 +2,21 @@ import glob
 import os
 
 
-class So:
-    pass
+class Directorio(object):
 
-class Folder:
-
-    def set_directory(self,directory):
-        self.directory = directory
-        return directory
-
-
-class File(Folder,So):
-
-    def __init__(self,directory,extension):
-        self.extension = self.set_extension(extension)
-        self.directory = self.set_directory(directory)
-
-    def set_extension(self,extension):
+    def __init__(self, directory, extension):
         self.extension = extension
-        return  extension
+        self.directory = directory
 
-    def buscar_archivos(self,directory,extension):
+    def archivos(self):
+        directory = self.directory  # obtienes el directorio desde el __init__
+        extension = self.extension  # obtienes la extension desde el __init__
         os.chdir(directory)
         archivos = glob.glob(extension)
-        for i in range(len(archivos)):
-            print(archivos[i])
+        return archivos  # retorna la lista creada
 
-
-
+    def zipdir(self,direcory,ziph):
+        import zipfile
+        for root, dirs, files in os.walk(direcory):
+            for file in files:
+                ziph.write(os.path.join(root,file))
